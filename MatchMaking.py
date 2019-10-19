@@ -84,7 +84,7 @@ while(True):
 
 
 players=[] 
-
+names=[]
 while(True):
 	while(True):
 		print("Enter name of player and score seperated by space or type 'e' to finish.")
@@ -94,6 +94,12 @@ while(True):
 		else:
 			try:
 				name,score=name_score.split(" ")
+				if name in names:
+					print('Name already exist, pick a different name.')
+					print()
+					continue
+				else:
+					names.append(name)
 				players.append((name,int(score)))
 			except:
 				print("Enter the data correctly.")
