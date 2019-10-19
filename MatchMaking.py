@@ -46,4 +46,10 @@ matches=sorted(validmatches,key=lambda x:abs(int(x[0][m])-int(x[1][m])))
 
 #Printing out all the valid matches
 for i in matches:
-	print(i)
+	count=1
+	for j in i:
+		print(j,end=" ")
+		if(count):
+			print("vs",end=" ")
+		count-=1
+	print()
