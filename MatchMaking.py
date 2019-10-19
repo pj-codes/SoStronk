@@ -34,7 +34,7 @@ def Validmatch(teams,m):
 	for match in combinations(teams,2):
 		flag=True
 		for i in range(m):
-			if(match[0][i] not in match[1]):
+			if(match[0][i] not in match[1]):  #If both teams have different players, continue else break out and start again.
 				continue
 			else:
 				flag=False
@@ -71,16 +71,46 @@ def Printmatches(matches):
 
 #------------------------------------------------Main Program-----------------------------------------------------------------------
 
+#Taking input from the user
 
-#Players List
-players=[('bleh',85),('Aequitas',90),('Aks',87),('Iam',20)] 
+while(True):
+	try:
+		print("Enter number of players on each side.")
+		M=int(input())
+		break
+	except:
+		print("Enter correct integer number.")
+		continue
 
 
-#M vs M Match
-M=2		
+players=[] 
+
+while(True):
+	while(True):
+		print("Enter name of player and score seperated by space or type 'e' to finish.")
+		name_score=input()
+		if(name_score=='e'):
+			break
+		else:
+			try:
+				name,score=name_score.split(" ")
+				players.append((name,int(score)))
+			except:
+				print("Enter the data correctly.")
+				continue
+	
+	if(len(players)<2*M):
+		left=2*M-len(players)
+		print(f"Number of players insufficient for matchmaking. Enter {left} more data and then finish.")
+		print()
+		continue
+	else:
+		break
+
+print()
 
 
-#All combinations of team with m players
+#All combinations of team with M players
 
 combi=combinations(players,M) 
 
@@ -95,5 +125,8 @@ validmatches=Validmatch(teams,M)
 matches=Qualitymatch(validmatches,M)
 
 #Printing all the matches sorted by quality
+
+print("All the different possible matches sorted by quality: ")
+print()
 Printmatches(matches)
 
