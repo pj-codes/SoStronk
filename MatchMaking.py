@@ -67,51 +67,74 @@ def Printmatches(matches):
 			count-=1
 		print()
 
+#=====================================================End of Function===============================================================================
+
+#Function to take input from the for number of players on each side.
+def numplayer():
+	while(True):
+		try:
+			print("Enter number of players on each side.")
+			M=int(input())
+			break
+		except ValueError:
+			print("Enter correct integer number.")
+			continue
+	return M
+
+#=====================================================End of Function===============================================================================
+
+#Function to take input of all the players and their score from the user.
+def players_score():
+	players=[]
+	names=[]
+	i=1
+	while(True):
+		while(True):
+			print(f"Enter name of player {i} and score(<=100) seperated by space or type 'e' to finish.")
+			name_score=input()
+			if(name_score=='e'):
+				break
+			else:
+				try:
+					name,score=name_score.split(" ")
+					if name in names:
+						print('Name already exist, pick a different name.')
+						print()
+						continue
+					elif(int(score)>100):
+						print('Not a valid score.')
+						print()
+						continue
+					else:
+						names.append(name)
+					players.append((name,int(score)))
+					i+=1
+				except:
+					print("Enter the data correctly.")
+					continue
+		
+		#Number of players cannot be less than 2*M.
+		if(len(players)<2*M):
+			left=2*M-len(players)
+			print(f"Number of players insufficient for matchmaking. Enter {left} more data and then finish.")
+			print()
+			continue
+		else:
+			break
+	return players
 
 
 #------------------------------------------------Main Program-----------------------------------------------------------------------
 
 #Taking input from the user
 
-while(True):
-	try:
-		print("Enter number of players on each side.")
-		M=int(input())
-		break
-	except:
-		print("Enter correct integer number.")
-		continue
+# M= Number of players on each side.
+M=numplayer()
 
 
-players=[] 
-names=[]
-while(True):
-	while(True):
-		print("Enter name of player and score seperated by space or type 'e' to finish.")
-		name_score=input()
-		if(name_score=='e'):
-			break
-		else:
-			try:
-				name,score=name_score.split(" ")
-				if name in names:
-					print('Name already exist, pick a different name.')
-					print()
-					continue
-				else:
-					names.append(name)
-				players.append((name,int(score)))
-			except:
-				print("Enter the data correctly.")
-				continue
-	
-	if(len(players)<2*M):
-		left=2*M-len(players)
-		print(f"Number of players insufficient for matchmaking. Enter {left} more data and then finish.")
-		print()
-		continue
-	else:
-		break
+#Getting list of players along with their score
+players=players_score() 
+
 
 print()
 
