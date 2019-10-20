@@ -8,7 +8,7 @@ def Allteams(players,m):
 	teams=[]  								#Empty array list to store all the teams
 
 # Creating all the teams and calculating average score of each team
-	for team in combi:
+	for team in players:
 		names=[]
 		avg=0
 		for j in range(m):
@@ -51,6 +51,7 @@ def Validmatch(teams,m):
 
 def Qualitymatch(validmatches,m):
 	return sorted(validmatches,key=lambda x:abs(int(x[0][m])-int(x[1][m])))
+
 
 #=====================================================End of Function===============================================================================
 
